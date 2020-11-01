@@ -9,7 +9,8 @@ const modal = document.getElementsByClassName("hidden")[0];
 for(const like of likes){
   like.addEventListener("click", (e)=>{
     mimicServerCall()
-    .then(() => {if (like.innerHTML === EMPTY_HEART) {
+    .then(() => {
+      if (like.innerHTML === EMPTY_HEART) {
       like.innerHTML = FULL_HEART
       like.classList.add("activated-heart")
     }
