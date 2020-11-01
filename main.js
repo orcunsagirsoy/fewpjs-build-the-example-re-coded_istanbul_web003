@@ -3,8 +3,27 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+const likes = document.querySelectorAll(".like span");
+const modal = document.getElementsByClassName("hidden")[0];
 
-
+for(const like of likes){
+  like.addEventListener("click", (e)=>{
+    mimicServerCall()
+    .then(() => {if (like.innerHTML === EMPTY_HEART) {
+      like.innerHTML = FULL_HEART
+      like.classList.add("activated-heart")
+    }
+    if (like.innerHTML === FULL_HEART){
+      like.innerHTML = EMPTY_HEART
+      like.classList.remove("activated-heart")
+    }
+  })
+  .catch((error) => {
+    modal.classList.remove("hidden")
+    setTimeout(()=>{modal.classList.add("hidden")},5000)
+    })
+  })
+}
 
 
 //------------------------------------------------------------------------------
